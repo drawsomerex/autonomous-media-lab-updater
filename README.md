@@ -6,7 +6,7 @@ GitHub Actions requests updates to https://autonomousmedialab.com about every 15
 
 The runner authenticates with a dedicated `AML_UPDATE_SECRET` stored in Actions secrets and the website's private configuration. A timestamped HMAC binds the method, path and request body. The key can only request a source refresh. Successful runs report source counts and the latest imported video; source failures make the workflow fail while the website retains its last good content. Website editor accounts and hosting credentials are managed separately.
 
-YouTube RSS is preferred. When it is unavailable, the website reads this creator's public channel listing and public video metadata, preserving titles, descriptions, thumbnails and publication timestamps. The website does not download video or audio from YouTube or Suno.
+YouTube imports come only from this creator's main Videos tab, preserving titles, descriptions, thumbnails and publication timestamps. Shorts, YouTube podcast markers, explicitly labelled podcasts and the Most Fascinating Stories series are excluded. Mixed-format channel RSS is not used. The separate podcast RSS importer continues to populate Audio. The website does not download video or audio from YouTube or Suno.
 
 This public repository uses standard GitHub-hosted Ubuntu runners. The import job has read-only repository permissions. The separate monthly maintenance workflow runs the signing tests and commits its health-check date, keeping the repository active so GitHub's inactivity rule does not disable scheduled workflows. That job has write access only to this repository and does not receive the import key.
 
