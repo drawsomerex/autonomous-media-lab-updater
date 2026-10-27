@@ -13,3 +13,6 @@ This public repository uses standard GitHub-hosted Ubuntu runners. The import jo
 Local tests: `python3 -m unittest discover -s tests -v`.
 
 The full website source and maintenance guide are kept in the owner's Websites folder and Second Brain. This repository contains the scheduler client and maintenance code.
+
+
+Podcast publication also has a direct GitHub Actions trigger in [the podcast hosting repository](https://github.com/drawsomerex/drawsomerex.github.io/actions/workflows/refresh_media_lab.yml). After a successful Pages or scheduled-publisher workflow, it waits for the latest committed episode to appear in public RSS, requests the same signed website refresh, and confirms that episode's ID in the import receipt. It accepts same-repository main-branch publication completions, excludes pull-request runs, and checks out main rather than code or artifacts from the triggering run. The separate timer remains a fallback for all three sources. Scheduled runs were observed several hours apart on October 27 despite the 15-minute cron configuration; a schedule is not a publication-time guarantee.
